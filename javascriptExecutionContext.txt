@@ -1,0 +1,51 @@
+code submitted to js => Global Execution Context(EC) creation => stored in 'this'
+
+GEC => diffrent for browser and personal codespace
+
+EC => 1. Global EC
+      2. Function EC
+      3. Eval EC
+
+js code => runs in 2 phases : 1) Memory Creation Phase/ Creation Phase
+                              2) Execution Phase (actual operations performed)
+
+
+Sample Code:
+
+let val1 = 10
+let val2 = 5
+function addnum(num1, num2){
+    let total = num1 + num2
+    return total
+}
+let result1 = addnum(val1, val2)
+let result2 = addnum(10, 2)
+
+Steps of execution : ======>>>>
+
+1) Global Execution Context/ Global Environment => 'this'
+
+2) Memory Phase :
+    val1 -> undefined
+    val2 -> undefined
+    addnum -> definition
+    result1 -> undefined
+    result2 -> undefined
+
+3) Execution Phase:
+    val1 -> 10
+    val2 -> 5
+    addnum -> [new execution environment creation for the function]
+              [will have its own Memory Phase and Execution Phase]  
+              [new variable environment + executionn thread]
+    
+    result1 -> 15
+
+    addnum -> [same procedure repeated again as context deleted after one use]
+
+    result2 -> 12
+
+
+    // CALL STACK ////+++++/////++++////
+
+    LIFO principle of called fucntions
